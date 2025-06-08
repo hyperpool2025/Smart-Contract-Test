@@ -79,7 +79,9 @@ contract USDCVault is ERC4626, Ownable, ReentrancyGuard {
 
         shares = assets;
         _mint(receiver, shares);
-        initialDeposits[receiver] += assets;
+        uint256 initialDeposit = initialDeposits[receiver];
+        initialDeposit += assets;
+        initialDeposits[receiver] = initialDeposit;
 
         emit Deposit(msg.sender, receiver, assets, shares);
         return shares;
@@ -117,7 +119,7 @@ contract USDCVault is ERC4626, Ownable, ReentrancyGuard {
         return shares;
     }
 
-    function restake(address newProtocol) external onlyTreasury {
+    function restake(address newProtocol) external onlyOwner() {
         uint256 balance = currentProtocol.balanceOf(
             address(usdc),
             address(this)
