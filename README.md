@@ -1,4 +1,4 @@
-# HyperPool Hardhat Project
+# HyperPool Smart Contract Test
 
 This project demonstrates a HyperPool Hardhat use case. 
 
