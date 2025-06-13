@@ -72,7 +72,7 @@ contract USDCVault is ERC4626, Ownable, ReentrancyGuard {
         address receiver
     ) public override isHuman nonReentrant whenActive returns (uint256 shares) {
         require(assets > 0, "Amount must be > 0");
-
+        require(usdc.balanceOf(msg.sender)>=assets,"Insuffient USDC balance");
         usdc.transferFrom(msg.sender, address(this), assets);
         usdc.approve(address(currentProtocol), assets);
         currentProtocol.supply(address(usdc), assets, address(this), 0);
