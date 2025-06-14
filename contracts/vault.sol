@@ -171,4 +171,10 @@ contract USDCVault is ERC4626, Ownable, ReentrancyGuard {
             active = true;
         }
     }
+
+    //change treasury wallet
+    function changeTreasury(address newTresury) external onlyOwner(){
+        require(newTresury!=treasury,"Same address ditected");
+        treasury=newTresury;
+    }
 }
