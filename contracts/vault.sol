@@ -44,15 +44,15 @@ contract USDCVault is ERC4626, Ownable, ReentrancyGuard {
     event ProtocolRestaked(address newProtocol);
 
     constructor(
-        IERC20 _usdc,
+        address _usdc,
         address _treasury,
         address _protocol
     )
         ERC20("Vault aToken", "vaUSDC")
-        ERC4626(_usdc)
+        ERC4626(IERC20(_usdc))
         Ownable(address(msg.sender))
     {
-        usdc = _usdc;
+        usdc = IERC20(_usdc);
         treasury = _treasury;
         currentProtocol = ILendingProtocol(_protocol);
     }
