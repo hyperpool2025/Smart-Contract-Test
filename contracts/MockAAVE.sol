@@ -26,6 +26,8 @@ contract MockAAVE is ILendingProtocol {
             "USDC transfer failed"
         );
         aToken.mint(onBehalfOf, amount);
+        // Silence unused warning
+        referralCode;
     }
 
     function withdraw(
