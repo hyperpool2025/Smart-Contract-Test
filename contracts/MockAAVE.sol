@@ -18,7 +18,7 @@ contract MockAAVE is ILendingProtocol {
         address asset,
         uint256 amount,
         address onBehalfOf,
-        uint16
+        uint16 referralCode
     ) external override {
         require(asset == address(usdc), "Only USDC");
         require(
